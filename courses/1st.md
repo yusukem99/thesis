@@ -93,9 +93,7 @@ IEEE（米国電気電子学会）によって発行・管理される
 
 近年のディープラーニング関連のモデルの論文が多く公開されている。
 
-例：
-
-[You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/pdf/1506.02640.pdf)
+例:[You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/pdf/1506.02640.pdf)
 
 ## 資料/提出物
 
