@@ -45,7 +45,7 @@ Googleドライブの共有フォルダに過去の卒業制作の例があり�
 
 卒業制作と比較して、より理論的または抽象的な探求が重視されます。
 
-## 前年度の創業制作
+## 参考文献
 
 ### 前年度の卒業制作
 [こちら](https://drive.google.com/drive/folders/1llwpbZiGzFS5Kg15-aKzjkcMtclC7aq6)のGoogle Driveに前年度の卒業制作の成果物があります。
