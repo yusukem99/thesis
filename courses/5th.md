@@ -44,9 +44,9 @@ docker-composeは、複数のDockerコンテナを一括で管理するための
 
 ```yaml
 
-例
+例:docker-compose.yaml
 
-```yaml:docker-compose.yaml
+```yaml
 version: '3.8'
 services:
   web:
