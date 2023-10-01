@@ -42,6 +42,8 @@ docker-composeは、複数のDockerコンテナを一括で管理するための
 
 たとえば、制作物にWebサーバとデータベースが必要な場合、次のように記述することで、Webサーバとデータベースを一括で管理することができます。
 
+WebサーバとしてApache、データベースとしてPostgreSQLを使用する場合のdocker-compose.yamlファイルは次のようになります。
+
 ```yaml
 
 例:docker-compose.yaml
@@ -56,14 +58,17 @@ services:
     volumes: 
       - ./web:/var/www/html
   db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: database
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+    image: postgres:10.18
+    container_name: seisaku-db
+    hostname: seisaku-db
     volumes:
-      - ./db:/var/lib/mysql
+      - seisaku-postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - TZ=Asia/Tokyo      
+volumes:
+  seisaku-postgres:
+    external: true
 ```
 
 docker-compose.yamlファイルを配置したディレクトリで、次のコマンドを実行することで、Webサーバとデータベースを起動することができます。
@@ -71,6 +76,18 @@ docker-compose.yamlファイルを配置したディレクトリで、次のコ�
 ```bash
 $ docker compose up
 ```
+
+この構成ではファイルを共有するために、`volumes`オプションを使用しています。
+
+`volumes`オプションは、ホストOSのディレクトリをコンテナ内のディレクトリにマウントすることができます。
+
+この例では、ホストOSの`./web`ディレクトリをコンテナ内の`/var/www/html`ディレクトリにマウントしています。
+
+`./web`ディレクトリには、Webサーバの設定ファイルや、Webサーバが配信するファイルを配置します。
+
+このディレクトリ内のファイルを作成・編集することで、Webサーバに反映されます。
+
+また、postgresのデータにアクセスする場合は`docker exec -it seisaku-db psql -U postgres`コマンドを使用します。
 
 この`docker-compose.yaml`ファイルと、プロジェクトで使用するファイルをまとめてgitで管理することで、ほかの端末でも同じ環境を構築することができます。
 
