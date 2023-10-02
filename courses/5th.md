@@ -18,11 +18,15 @@ WindowsをホストOSとして、Vmware Workstationを使用し、CentOSをゲ�
 
 クライアントOSからインターネットに接続する際は、プロキシを設定する必要があります。
 
+ゲストOSに設定した内容はローカルに保存されるため、ほかの端末からはアクセスできません。
+
 ## CentOS
 
 端末から直接CentOSを起動する方法です。
 
 こちらもインターネットに接続する際は、プロキシを設定する必要があります。
+
+こちらも、OSに設定した内容はローカルに保存されるため、ほかの端末からはアクセスできません。
 
 ## Dockerコンテナ
 
@@ -36,6 +40,7 @@ Dockerコンテナは、小さなLinuxカーネルを持ち、その上で動作
 
 Dockerのインストール方法は、[Docker公式サイト](https://docs.docker.com/engine/install/centos/)を参照してください。
 
+こちらの方法では、後述のdocker-compose作成し、gitで管理することで、ほかの端末でも容易に同じ環境を構築することができます。ただし、ほかの端末にもdockerをインストールする必要があります。
 ### docker-compose
 
 docker-composeは、複数のDockerコンテナを一括で管理するためのツールです。
@@ -65,10 +70,7 @@ services:
       - seisaku-postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=postgres
-      - TZ=Asia/Tokyo      
-volumes:
-  seisaku-postgres:
-    external: true
+      - TZ=Asia/Tokyo
 ```
 
 docker-compose.yamlファイルを配置したディレクトリで、次のコマンドを実行することで、Webサーバとデータベースを起動することができます。
@@ -97,7 +99,16 @@ $ docker compose up
 
 VPSとは、Virtual Private Serverの略で、物理サーバー上で動作する仮想サーバを借りることができるサービスです。
 
+- [さくらのVPS](https://vps.sakura.ad.jp/)
+- [AWS Lightsail](https://aws.amazon.com/jp/lightsail-vps/)
+
 クラウドとは、インターネット上にあるサーバやストレージなどのコンピュータリソースを、必要なときに必要なだけ利用することができるサービスです。
 
+- [さくらのクラウド](https://cloud.sakura.ad.jp/specification/server-disk/#server-disk-content01)
+- [Google Compute Engine](https://cloud.google.com/compute?hl=ja)（e2-micro インスタンス）を 1 か月あたり 1 台無料で利用できます。
+- [Amazon EC2](https://aws.amazon.com/jp/ec2/)
+
 どちらもよく似たサービスですが、VPSのほうが比較的安価ですむことが多いです。
+
+Google CloudやAWSでは、一定期間使用できる無料枠がありますので、そちらを利用するのも良いでしょう。
 
