@@ -14,19 +14,38 @@
 
 WindowsをホストOSとして、Vmware Workstationを使用し、CentOSをゲストOSとして使用する方法です。
 
-デフォルトでNATモードになっており、Windows上に仮想DHCPサーバが構築され、ゲストOSのCentOSは、ホストOSのWindowsからIPアドレスを取得します。
+デフォルトでNATモードになっており、Windows上に仮想DHCPサーバが構築され、ゲストOSのCentOSは、ホストOSのWindowsからIPアドレスを取得します。クライアントOSからインターネットに接続する際は、プロキシを設定する必要があります。
 
-クライアントOSからインターネットに接続する際は、プロキシを設定する必要があります。
-
-ゲストOSに設定した内容はローカルに保存されるため、ほかの端末からはアクセスできません。
+ゲストOSに設定した内容はローカルに保存されるため、外部の端末からはアクセスできません。
 
 ## CentOS
 
-端末から直接CentOSを起動する方法です。
+教室の端末にはWindowsに加えて、CentOSがインストールされています。（デュアルブート）
 
-こちらもインターネットに接続する際は、プロキシを設定する必要があります。
+こちらも、OSに設定した内容はローカルに保存されるため、外部の端末からはアクセスできません。学外で制作する場合は、下記の方法を参考にクラウドサービスなどを利用してください。
 
-こちらも、OSに設定した内容はローカルに保存されるため、ほかの端末からはアクセスできません。
+## その他
+
+ほかにも、グローバルIPアドレスを持つサーバを借りて、VPSやクラウド上で開発する方法もあります。
+
+VPSとは、Virtual Private Serverの略で、物理サーバー上で動作する仮想サーバを借りることができるサービスです。
+
+- [さくらのVPS](https://vps.sakura.ad.jp/)
+- [AWS Lightsail](https://aws.amazon.com/jp/lightsail-vps/)
+
+クラウドとは、インターネット上にあるサーバやストレージなどのコンピュータリソースを、必要なときに必要なだけ利用することができるサービスです。
+
+- [さくらのクラウド](https://cloud.sakura.ad.jp/specification/server-disk/#server-disk-content01)
+- [Google Compute Engine](https://cloud.google.com/compute?hl=ja)（e2-micro インスタンス）を 1 か月あたり 1 台無料で利用できます。
+- [Amazon EC2](https://aws.amazon.com/jp/ec2/)
+
+どちらもよく似たサービスですが、VPSのほうが比較的安価ですむことが多いです。
+
+Google CloudやAWSでは、一定期間使用できる無料枠がありますので、そちらを利用するのも良いでしょう。
+
+# 発展
+
+この内容はやや高度な内容ですが、興味がある方は取り組んでみてください。
 
 ## Dockerコンテナ
 
@@ -92,23 +111,4 @@ $ docker compose up
 また、postgresのデータにアクセスする場合は`docker exec -it seisaku-db psql -U postgres`コマンドを使用します。
 
 この`docker-compose.yaml`ファイルと、プロジェクトで使用するファイルをまとめてgitで管理することで、ほかの端末でも同じ環境を構築することができます。
-
-## その他
-
-ほかにも、グローバルIPアドレスを持つサーバを借りて、VPSやクラウド上で開発する方法もあります。
-
-VPSとは、Virtual Private Serverの略で、物理サーバー上で動作する仮想サーバを借りることができるサービスです。
-
-- [さくらのVPS](https://vps.sakura.ad.jp/)
-- [AWS Lightsail](https://aws.amazon.com/jp/lightsail-vps/)
-
-クラウドとは、インターネット上にあるサーバやストレージなどのコンピュータリソースを、必要なときに必要なだけ利用することができるサービスです。
-
-- [さくらのクラウド](https://cloud.sakura.ad.jp/specification/server-disk/#server-disk-content01)
-- [Google Compute Engine](https://cloud.google.com/compute?hl=ja)（e2-micro インスタンス）を 1 か月あたり 1 台無料で利用できます。
-- [Amazon EC2](https://aws.amazon.com/jp/ec2/)
-
-どちらもよく似たサービスですが、VPSのほうが比較的安価ですむことが多いです。
-
-Google CloudやAWSでは、一定期間使用できる無料枠がありますので、そちらを利用するのも良いでしょう。
 
