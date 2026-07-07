@@ -1,4 +1,4 @@
-# ソースコードの管理
+# 第6回 バージョン管理システム
 
 プロジェクトを進めていくと、設定ファイルや、HTMLやPythonのソースコードなど、沢山のファイルが必要になってくると思います。
 
@@ -72,7 +72,7 @@ git commit -m 'はじめのコミット' # コミットメッセージを記述
 
 ```bash
 git remote add origin <GitHubのリポジトリのURL>
-git push -u origin master
+git push -u origin main
 ```
 
 これで、GitHubにリポジトリが作成され、変更履歴がアップロードされました。
@@ -90,7 +90,7 @@ git clone <GitHubのリポジトリのURL>
 リモートリポジトリの変更履歴を取得するには、次のコマンドを実行します。
 
 ```bash
-git pull origin master
+git pull origin main
 ```
 
 
