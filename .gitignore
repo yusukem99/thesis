@@ -4,3 +4,7 @@ reference/
 # Office一時ファイル・OSゴミ
 ~$*
 .DS_Store
+
+# MkDocs のビルド生成物
+/site/
+/site-src/
