@@ -34,7 +34,7 @@ jobs:
           mkdir -p site-src
           cp readme.md site-src/index.md
           cp -r courses site-src/
-          cp -r templates site-src/
+          cp -r forms site-src/
           cp -r images site-src/
 
       - name: Build site
